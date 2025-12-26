@@ -27,7 +27,46 @@ body {
     background-color: #218838;
 }
 
+.nav-item {
+    font-size: 14px;
+}
+
+#search-form {
+    font-size: 14px;
+}
 
 footer {
     background-color: #e9ecef;
+}
+
+
+/* Улучшение форм входа и регистрации */
+.card {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+}
+
+.btn-success {
+    border-radius: 10px;
+    padding: 12px;
+    font-weight: bold;
+}
+
+.text-success {
+    color: #28a745 !important;
+}
+
+.card-header {
+    background: linear-gradient(135deg, #28a745, #20c997) !important;
 }

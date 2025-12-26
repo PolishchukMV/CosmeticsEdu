@@ -2,14 +2,27 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from .models import Product, Category
+from .models import Product, Category, News
+from django.db.models import Q
 
 
 def home(request):
     categories = Category.objects.all()
-    featured_products = Product.objects.all()[:4]  # 4 рекомендуемых продукта
-    return render(request, 'shop/home.html', {'categories': categories, 'featured_products': featured_products})
+    featured_products = Product.objects.all()[:4]
+    news_list = News.objects.all()[:3]  # 3 последние новости
+    return render(request, 'shop/home.html', {
+        'categories': categories,
+        'featured_products': featured_products,
+        'news_list': news_list
+    })
 
+
+def search(request):
+    query = request.GET.get('q', '')
+    products = Product.objects.filter(
+        Q(name__icontains=query) | Q(description__icontains=query)
+    ) if query else Product.objects.none()
+    return render(request, 'shop/search_results.html', {'products': products, 'query': query})
 
 def about(request):
     return render(request, 'shop/about.html')

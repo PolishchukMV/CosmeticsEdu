@@ -10,4 +10,6 @@ urlpatterns = [
     path('sitemap/', views.sitemap, name='sitemap'),
     path('register/', views.register, name='register'),
     path('profile/', views.profile, name='profile'),
+    path('search/', views.search, name='search'),
 ]
+

@@ -10,40 +10,46 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">NaturalBeauty</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Главная</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">О компании</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'product_list' %}">Каталог</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'contacts' %}">Контакты</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'sitemap' %}">Карта сайта</a></li>
-                </ul>
-                <ul class="navbar-nav">
-                    {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'profile' %}">Личный кабинет ({{ user.username }})</a>
-                        </li>
-                        <li class="nav-item">
-                            <form action="{% url 'logout' %}" method="post" style="display: inline;">
-                                {% csrf_token %}
-                                <button type="submit" class="nav-link btn btn-link" style="border: none; background: none; cursor: pointer;">
-                                    Выйти
-                                </button>
-                            </form>
-                        </li>
-                    {% else %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Войти</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Регистрация</a></li>
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">NaturalBeauty</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Главная</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">О компании</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'product_list' %}">Каталог</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'contacts' %}">Контакты</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'sitemap' %}">Карта сайта</a></li>
+            </ul>
+
+            <!-- Форма поиска -->
+            <form id="search-form" class="d-flex me-3" action="{% url 'search' %}" method="get">
+                <input class="form-control me-2" type="search" name="q" placeholder="Поиск продуктов..." aria-label="Search" value="{{ request.GET.q }}">
+                <button class="btn btn-outline-success" type="submit">Найти</button>
+            </form>
+
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Личный кабинет ({{ user.username }})</a></li>
+                    {% if user.is_staff or user.is_superuser %}
+                        <li class="nav-item"><a class="nav-link" href="/admin/" target="_blank">Админ-панель</a></li>
                     {% endif %}
-                </ul>
-            </div>
+                    <li class="nav-item">
+                        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="nav-link btn btn-link" style="border: none; background: none; cursor: pointer;">Выйти</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Войти</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Регистрация</a></li>
+                {% endif %}
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <div class="container mt-4">
         {% block content %}{% endblock %}
