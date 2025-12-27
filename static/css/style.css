@@ -70,3 +70,7 @@ footer {
 .card-header {
     background: linear-gradient(135deg, #28a745, #20c997) !important;
 }
+
+.carousel-caption {
+    text-shadow: 2px 2px black
+}

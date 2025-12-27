@@ -1,0 +1,32 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Страница не найдена — 404{% endblock %}
+
+{% block content %}
+<div class="container py-5 my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 text-center">
+
+            <h1 class="display-4 text-success mb-4">Страница не найдена</h1>
+            <p class="lead mb-4">К сожалению, запрошенная вами страница не существует.<br>
+               Возможно, ссылка устарела или произошла ошибка в адресе.</p>
+
+            <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                <a href="{% url 'home' %}" class="btn btn-success btn-lg px-5">
+                    На главную
+                </a>
+                <a href="{% url 'product_list' %}" class="btn btn-outline-success btn-lg px-5">
+                    Перейти в каталог
+                </a>
+            </div>
+
+            <div class="mt-5">
+                <small class="text-muted">
+                    Код ошибки: 404
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

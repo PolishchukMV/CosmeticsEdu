@@ -3,7 +3,5 @@
 
 {% block content %}
 <h1>Добро пожаловать, {{ user.username }}!</h1>
-<p>Это ваш личный кабинет. Здесь в будущем можно добавить заказы, избранное и т.д.</p>
-<p>Email: {{ user.email }}</p>
 <a href="{% url 'logout' %}" class="btn btn-danger">Выйти</a>
 {% endblock %}

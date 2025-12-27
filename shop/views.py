@@ -58,3 +58,6 @@ def profile(request):
 
 def sitemap(request):
     return render(request, 'shop/sitemap.html')
+
+def custom_404(request, exception):
+    return render(request, '404.html', status=404)
