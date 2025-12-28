@@ -7,7 +7,7 @@ SECRET_KEY = 'your-secret-key'
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'Xenx3127.pythonanywhere.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
