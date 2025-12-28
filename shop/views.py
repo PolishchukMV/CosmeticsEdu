@@ -24,6 +24,7 @@ def search(request):
     ) if query else Product.objects.none()
     return render(request, 'shop/search_results.html', {'products': products, 'query': query})
 
+
 def about(request):
     return render(request, 'shop/about.html')
 
@@ -33,9 +34,11 @@ def product_list(request):
     products = Product.objects.all()
     return render(request, 'shop/product_list.html', {'products': products, 'categories': categories})
 
+
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
     return render(request, 'shop/product_detail.html', {'product': product})
+
 
 def contacts(request):
     return render(request, 'shop/contacts.html')
@@ -52,12 +55,15 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'shop/register.html', {'form': form})
 
+
 @login_required
 def profile(request):
     return render(request, 'shop/profile.html')
 
+
 def sitemap(request):
     return render(request, 'shop/sitemap.html')
+
 
 def custom_404(request, exception):
     return render(request, '404.html', status=404)
